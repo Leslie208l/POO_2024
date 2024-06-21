@@ -1,0 +1,1 @@
+print("potencia:",7**2)
