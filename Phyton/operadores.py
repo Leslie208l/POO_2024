@@ -1,0 +1,7 @@
+print("suma:",7+8)
+print("resta:",15-8)
+print("multiplicacion:",12*5)
+print("division:",11/3)
+print("potencia:",34**8)
+print("suelo:",23//2)
+print("modulo:",6%2)
