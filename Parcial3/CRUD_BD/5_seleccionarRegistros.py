@@ -1,14 +1,14 @@
 from conexionBD import *
 
-micursor=conexion.cursor()
+try:
+    micursor=conexion.cursor()
+    sql="delete from clientes where id=1"
 
-sql="select nombre,direccion,tel from clientes"
-micursor.execute(sql)
-resultado=micursor.fetchall()
+    micursor.execute(sql) 
+    conexion.commit()
 
-if len(resultado)>0:
-    print(f"Registros de la tabla: {len(resultado)}")
-    for x in resultado:
-      print(x)
+except:
+   print(f"Ocuerrio un problema con el servidor por favor intentalo mas tarde")
 
-
+else:
+   print(f"Registro Insertado Correctamente")

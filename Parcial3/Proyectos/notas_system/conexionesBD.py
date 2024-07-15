@@ -1,24 +1,37 @@
--- CREATE DATABASE IF NOT EXISTS bd_notas;
--- use bd_notas;
+import mysql.connector
 
--- create table usuarios(
---    id int(25) auto_increment not null, 
---     nombre varchar(100),
---     apellidos varchar(100),
---     email varchar(100),
---     password varchar(100),
---     fecha date not null,
---     CONSTRAINT pk_usuarios primary key (id),
---     CONSTRAINT uq_email  unique(email)
--- )engine=InnoDB;
+try:
+    #Crear concexion con la BD
+ conexion=mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password=''
+ )
+
+ #Verificar la conexion
+ if conexion.is_connected():
+    print("Se crear la conexicon con exito")
+ else:
+    print("No fue posible conectarse")
+
+ #Crear otro objeto par aejecutar la instrucciones
+ micursor=conexion.cursor()
+
+ #Crear la BD desde Python
+ sql="create database bd_python"
+ micursor.execute(sql)
+
+ #verificar que se creo la BD
+ if micursor:
+    print("Se creo la BD exitosamente")
+
+ #Mostrar la BD que existen en mi servidor de MYSQL
+ micursor.execute("show databases")
+
+ for x in micursor:
+    print(x)
+
+except:
+   print(f"Ocuerrio un problema con el servidor por favor intentalo mas tarde")
 
 
--- create table notas(
---    id int(25) auto_increment not null,
---    usuario_id  int(25) not null,
---    titulo varchar(200) not null,
---    descripcion mediumtext,
---    fecha date not null,
---    CONSTRAINT pk_notas primary key (id),
---    CONSTRAINT fk_notas_usuarios foreign key(usuario_id) references usuarios(id)
--- )engine=InnoDB;

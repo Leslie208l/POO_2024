@@ -1,10 +1,15 @@
-from conexionBD import *
+try:
+    #Conectarse con la BD MySql
+    conexion=mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='bd_python'
+    )
 
-micursor=conexion.cursor()
-
-sql="update clientes set tel='6181112233' where id='4'"
-micursor.execute(sql)
-conexion.commit()
-
-if micursor:
-   print(f"Registro Actualizado Correctamente")
+except Exception as e:
+    print(f"Error: (e)")
+    print(f"Tipo de error: {type(e)._name_}")
+    print(f"Ocuerrio un problema con el servidor por favor intentalo mas tarde")
+else:
+    print(f"Se creo la concexion con la BD exitosamente")
